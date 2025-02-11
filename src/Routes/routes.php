@@ -20,10 +20,10 @@ return function (App $app) {
     $app->post('/estudiante', [EstudianteController::class, 'createEstudiante']);
     $app->delete('/estudiante/{id}', [EstudianteController::class, 'deleteEstudiante']);
     
-    $app->get('/citas', [CitaController::class, 'getAllCitas'])->add(new AuthMiddleware($app->getContainer()->get(PDO::class), $app->getContainer()->get('secretKey')),['paciente']);
-    $app->post('/citas', [CitaController::class, 'createCita']);
+    //$app->get('/citas', [CitaController::class, 'getAllCitas'])->add(new AuthMiddleware($app->getContainer()->get(PDO::class), $app->getContainer()->get('secretKey')),['paciente']);
+    //$app->post('/citas', [CitaController::class, 'createCita']);
 
-    $app->get('/medicos', [MedicoController::class, 'getAllMedicos']);
+    //$app->get('/medicos', [MedicoController::class, 'getAllMedicos']);
 
     $app->post('/usuario', [UserControllerAuth::class, 'register']);
     $app->post('/login', [UserControllerAuth::class, 'login']);
