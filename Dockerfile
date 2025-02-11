@@ -1,23 +1,24 @@
-# Usa una imagen oficial de PHP con Apache
+# Usa una imagen base oficial de PHP con Apache
 FROM php:8.2-apache
 
-# Instala extensiones necesarias para Slim y PDO
+# Instala extensiones necesarias
 RUN docker-php-ext-install pdo pdo_mysql
 
-# Instala Composer dentro del contenedor
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+# Instala Composer manualmente dentro del contenedor
+RUN apt-get update && apt-get install -y curl unzip \
+    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Establece el directorio de trabajo en /var/www/html
 WORKDIR /var/www/html
 
-# Copia los archivos del proyecto al contenedor
+# Copia los archivos del proyecto
 COPY . .
 
-# Instala dependencias de Composer
-RUN composer install --no-dev --ignore-platform-reqs --optimize-autoloader
+# Instala dependencias con Composer
+RUN composer install --no-dev --ignore-platform-reqs --optimize-autoloader || cat /var/www/html/composer.log
 
-# Expone el puerto 80
+# Expone el puerto 80 para Apache
 EXPOSE 80
 
-# Configura el comando de inicio del contenedor
+# Inicia Apache
 CMD ["apache2-foreground"]
