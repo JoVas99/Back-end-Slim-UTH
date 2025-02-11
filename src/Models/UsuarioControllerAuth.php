@@ -25,8 +25,9 @@ class UserControllerAuth
         $password = $data['password'];
 
         // Consultar la base de datos para obtener el usuario por correo
-        $user = $this->userModel->getUserByUsername($username);
+        $user = $this->userModel->getUserByEmail($username);
 
+        //comparacion de las contraseñas con password verify ya que la contraseña no se almacena en texto plano
         if ($user && password_verify($password, $user['password'])) {
             // Generar el token JWT con el ID del usuario
             $payload = [

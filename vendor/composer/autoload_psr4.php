@@ -25,4 +25,5 @@ return array(
     'Dotenv\\' => array($vendorDir . '/vlucas/phpdotenv/src'),
     'DI\\Bridge\\Slim\\' => array($vendorDir . '/php-di/slim-bridge/src'),
     'DI\\' => array($vendorDir . '/php-di/php-di/src'),
+    'App\\' => array($baseDir . '/src'),
 );
