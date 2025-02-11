@@ -8,11 +8,15 @@ RUN docker-php-ext-install pdo pdo_mysql
 RUN apt-get update && apt-get install -y curl unzip \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Establece el directorio de trabajo en /var/www/html
+# Configurar el DocumentRoot para que apunte a `public/`
 WORKDIR /var/www/html
+RUN sed -i "s|DocumentRoot /var/www/html|DocumentRoot /var/www/html/public|" /etc/apache2/sites-available/000-default.conf
 
-# Copia los archivos del proyecto
-COPY . .
+# Habilitar mod_rewrite para Slim
+RUN a2enmod rewrite
+
+# Copiar archivos del proyecto
+COPY . /var/www/html/
 
 # Instala dependencias con Composer
 RUN composer install --no-dev --ignore-platform-reqs --optimize-autoloader || cat /var/www/html/composer.log
@@ -22,3 +26,6 @@ EXPOSE 80
 
 # Inicia Apache
 CMD ["apache2-foreground"]
+
+# Reiniciar Apache
+RUN service apache2 restart
