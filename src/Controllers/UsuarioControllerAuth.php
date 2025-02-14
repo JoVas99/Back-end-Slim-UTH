@@ -56,7 +56,7 @@ class UsuarioControllerAuth
         $datos = $request->getParsedBody();
 
         // Validación básica de los datos
-        if (!isset($datos['nombre_usuario']) || !isset($datos['password']) || !isset($datos['rol'])) {
+        if (!isset($datos['correo']) || !isset($datos['password']) || !isset($datos['rol'])) {
             $response->getBody()->write("Datos inválidos");
             return $response->withStatus(400);
         }
