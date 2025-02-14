@@ -44,12 +44,12 @@ $container->set(PDO::class, function(){
 $container->set('secretKey', $_ENV['SECRET_KEY']);
 
 // Registrar el controlador en el contenedor
-$container->set(App\Controllers\UserControllerAuth::class, function($container) {
-    return new App\Controllers\UserControllerAuth(
-        $container->get('secretKey'),
-        $container->get(PDO::class)
-    );
-});
+// $container->set(App\Controllers\UserControllerAuth::class, function($container) {
+//     return new App\Controllers\UserControllerAuth(
+//         $container->get('secretKey'),
+//         $container->get(PDO::class)
+//     );
+// });
 
 AppFactory::setContainer($container);
 $app = AppFactory::create();
