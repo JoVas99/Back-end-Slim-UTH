@@ -6,6 +6,7 @@ use Firebase\JWT\JWT;
 use App\Models\UserModelAuth;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
+use PDO;
 
 class UserControllerAuth
 {
