@@ -15,7 +15,7 @@ class UsuarioControllerAuth
 
     public function __construct($secretKey,\PDO $db)
     {
-        $this->userModel = new UserModelAuth($db);
+        $this->userModel = new UsuarioModelAuth($db);
         $this->secretKey = $secretKey;
     }
 
