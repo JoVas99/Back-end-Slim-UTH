@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-class UserModelAuth
+class UsuarioModelAuth
 {
     private $db;
 

@@ -3,12 +3,12 @@
 namespace App\Controllers;
 
 use Firebase\JWT\JWT;
-use App\Models\UserModelAuth;
+use App\Models\UsuarioModelAuth;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use PDO;
 
-class UserControllerAuth
+class UsuarioControllerAuth
 {
     private $secretKey;
     private $userModel;
@@ -32,7 +32,7 @@ class UserControllerAuth
         if ($user && password_verify($password, $user['password'])) {
             // Generar el token JWT con el ID del usuario
             $payload = [
-                'iss' => 'http://medisys.com', // Emisor
+                'iss' => 'https://prueba-tecnica-uth.netlify.app', // Emisor
                 'sub' => $user['id'],      // ID del usuario (Sujeto)
                 'iat' => time(),           // Emitido en
                 'exp' => time() + (60 * 60), // Expiración en 1 hora

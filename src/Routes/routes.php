@@ -3,7 +3,7 @@
 
 use Slim\App;
 use App\Controllers\EstudianteController;
-use App\Controllers\UserControllerAuth;
+use App\Controllers\UsuarioControllerAuth;
 use App\Middleware\AuthMiddleware;
 
 return function (App $app) {
@@ -25,6 +25,6 @@ return function (App $app) {
 
     //$app->get('/medicos', [MedicoController::class, 'getAllMedicos']);
 
-    $app->post('/register', [UserControllerAuth::class, 'register']);
-    $app->post('/login', [UserControllerAuth::class, 'login']);
+    $app->post('/register', [UsuarioControllerAuth::class, 'register']);
+    $app->post('/login', [UsuarioControllerAuth::class, 'login']);
 };
