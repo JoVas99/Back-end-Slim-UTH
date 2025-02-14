@@ -61,7 +61,7 @@ $app->add(function ($request, $handler) {
     $response = $handler->handle($request);
 
     return $response
-        ->withHeader('Access-Control-Allow-Origin', 'http://localhost:4200') // Permitir tu frontend
+        ->withHeader('Access-Control-Allow-Origin', 'https://prueba-tecnica-uth.netlify.app') // Permitir tu frontend
         ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
         ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
         ->withHeader('Access-Control-Allow-Credentials', 'true');  // Si necesitas enviar cookies o credenciales

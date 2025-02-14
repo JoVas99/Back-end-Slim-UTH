@@ -10,7 +10,7 @@ return function (App $app) {
     // Manejar solicitudes OPTIONS para preflight
     $app->options('/{routes:.+}', function ($request, $response, $args) {
         return $response
-            ->withHeader('Access-Control-Allow-Origin', 'http://localhost:4200')
+            ->withHeader('Access-Control-Allow-Origin', 'https://prueba-tecnica-uth.netlify.app')
             ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
             ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     });
@@ -25,6 +25,6 @@ return function (App $app) {
 
     //$app->get('/medicos', [MedicoController::class, 'getAllMedicos']);
 
-    $app->post('/usuario', [UserControllerAuth::class, 'register']);
+    $app->post('/register', [UserControllerAuth::class, 'register']);
     $app->post('/login', [UserControllerAuth::class, 'login']);
 };
