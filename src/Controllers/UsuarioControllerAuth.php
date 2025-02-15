@@ -47,7 +47,7 @@ class UsuarioControllerAuth
             $response->getBody()->write(json_encode(['token' => $token,'rol'=>$user['rol']]));
             return $response->withHeader('Content-Type','application/json')->withStatus(201);
         } else {
-            $response->getBody()->withStatus(401)->write(json_encode(['error' => 'Invalid credentials']));
+            $response->getBody()->write(json_encode(['error' => 'Invalid credentials']));
             return $response->withHeader('Content-Type','application/json')->withStatus(500);
         }
     }

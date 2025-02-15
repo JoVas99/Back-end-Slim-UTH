@@ -19,7 +19,7 @@ class UsuarioModelAuth
         $stmt->execute();
         return $stmt->fetch();
     }
-    public function getUserByEmail($nombre_usuario)
+    public function getUserByEmail($correo)
     {
         $query = "SELECT id, correo, password, rol FROM usuarios WHERE correo = :correo";
         $stmt = $this->db->prepare($query);
