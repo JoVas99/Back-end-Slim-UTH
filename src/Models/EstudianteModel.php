@@ -12,13 +12,13 @@ class EstudianteModel
     }
     public function getAllEstudiante()
     {
-        $sql = "SELECT * FROM estudiante";
+        $sql = "CALL spEstudianteSelect()";
         $stmt = $this->db->query($sql);
         return $stmt->fetchAll();
     }
     public function getEstudianteById($id)
     {
-        $sql = "SELECT * FROM estudiante WHERE id = :id";
+        $sql = "SELECT fObtenerEstudiantePorID(:id) AS estudiante";
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':id',$id);
         $stmt->execute();
@@ -26,7 +26,7 @@ class EstudianteModel
     }
     public function createEstudiante($data)
     {
-        $sql = "INSERT INTO estudiante(nombre, apellido, edad, genero, usuario_id) VALUES (:nombre, :apellido, :edad, :genero, :usuario_id)";
+        $sql = "CALL spEstudianteInsert(:nombre, :apellido, :edad, :genero, :usuario_id)";
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':nombre', $data['nombre']);
         $stmt->bindParam(':apellido', $data['apellido']);
@@ -38,7 +38,7 @@ class EstudianteModel
     }
     public function updateEstudiante($id, $data)
     {
-        $stmt = $this->db->prepare("UPDATE estudiante SET nombre = :nombre, apellido = :apellido, edad = :edad, genero = :genero, usuario_id = :usuario_id WHERE id = :id");
+        $stmt = $this->db->prepare("CALL spEstudianteUpdate :id, :nombre, :apellido, :edad, :genero, :usuario_id");
         
         $stmt->bindParam(':nombre', $data['nombre']);
         $stmt->bindParam(':apellido', $data['apellido']);
@@ -51,12 +51,12 @@ class EstudianteModel
     public function deleteEstudiante($id,$usuario_id)
     {
         //Eliminar estudiante
-        $stmt = $this->db->prepare("DELETE FROM estudiante WHERE id = :id");
+        $stmt = $this->db->prepare("CALL spEstudianteDelete(:id)");
         $stmt->bindParam(':id', $id);
         $stmt->execute();
 
         // Eliminar usuario
-        $stmt = $this->db->prepare("DELETE FROM usuarios WHERE id = :usuario_id");
+        $stmt = $this->db->prepare("CALL spUsuariosDelete(:usuario_id)");
         $stmt->bindParam(':usuario_id', $usuario_id);
         $stmt->execute();
 

@@ -13,7 +13,7 @@ class UsuarioModelAuth
     // Método para obtener el usuario de la base de datos
     public function getUserById($userId)
     {
-        $query = "SELECT id, correo, rol FROM usuarios WHERE id = :id";
+        $query = "SELECT fObtenerUsuariosPorID(:id) AS usuarios";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':id', $userId);
         $stmt->execute();
@@ -21,7 +21,7 @@ class UsuarioModelAuth
     }
     public function getUserByEmail($correo)
     {
-        $query = "SELECT id, correo, password, rol FROM usuarios WHERE correo = :correo";
+        $query = "SELECT fObtenerUsuariosPorCorreo(:correo) AS usuarios";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':correo', $correo);
         $stmt->execute();
@@ -31,7 +31,7 @@ class UsuarioModelAuth
     {
         $hashedContraseña = password_hash($data['password'],PASSWORD_DEFAULT);
 
-        $query = "INSERT INTO usuarios (correo, password, rol) VALUES (:correo, :password, :rol)";
+        $query = "CALL spUsuariosInsert(:correo, :password, :rol)";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':correo',$data['correo']);
         $stmt->bindParam(':password',$hashedContraseña);
