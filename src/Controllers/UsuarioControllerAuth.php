@@ -69,7 +69,7 @@ class UsuarioControllerAuth
             return $response->withHeader('Content-Type','application/json')->withStatus(201);
             
         } else {
-            $response->getBody()->write("Error al crear el usuario");
+            $response->getBody()->write(json_encode(["error"=>"Error al crear el usuario"]));
             return $response->withStatus(500);
         }
     }

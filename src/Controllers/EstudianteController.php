@@ -47,10 +47,10 @@ class EstudianteController
         $idNuevoEstudiante = $this->estudianteModel->createEstudiante($datos);
 
         if ($idNuevoEstudiante) {
-            $response->getBody()->write("Estudiante creado con ID: $idNuevoEstudiante");
+            $response->getBody()->write(json_encode(["Estudiante creado con ID"=> $idNuevoEstudiante]));
             return $response->withStatus(201);
         } else {
-            $response->getBody()->write("Error al crear el estudiante");
+            $response->getBody()->write(json_encode(["error"=>"Error al crear el estudiante"]));
             return $response->withStatus(500);
         }
     }
@@ -69,10 +69,10 @@ class EstudianteController
         $resultado = $this->estudianteModel->updateEstudiante($id, $datos);
 
         if ($resultado) {
-            $response->getBody()->write("Alumno actualizado");
+            $response->getBody()->write(json_encode(["message"=>"Alumno actualizado"]));
             return $response->withStatus(200);
         } else {
-            $response->getBody()->write("Error al actualizar al estudiante");
+            $response->getBody()->write(json_encode(["error"=>"Error al actualizar el estudiante"]));
             return $response->withStatus(500);
         }
     }
@@ -84,10 +84,10 @@ class EstudianteController
         $resultado = $this->estudianteModel->deleteEstudiante($id);
 
         if ($resultado) {
-            $response->getBody()->write("Estudiante eliminado");
+            $response->getBody()->write(json_encode(["message"=>"Estudiante eliminado"]));
             return $response->withStatus(200);
         } else {
-            $response->getBody()->write("Error al eliminar al estudiante");
+            $response->getBody()->write(json_encode(["error"=>"Error al eliminar el estudiante"]));
             return $response->withStatus(500);
         }
     }
