@@ -33,7 +33,8 @@ class EstudianteModel
         $stmt->bindParam(':edad', $data['edad']);
         $stmt->bindParam(':genero', $data['genero']);
         $stmt->bindParam(':usuario_id', $data['usuario_id']);
-        return $stmt->execute();
+        $stmt->execute();
+        return $this->db->lastInsertId(); 
     }
     public function updateEstudiante($id, $data)
     {
