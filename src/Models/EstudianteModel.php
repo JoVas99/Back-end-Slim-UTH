@@ -48,10 +48,18 @@ class EstudianteModel
         $stmt->bindParam(':id', $id);
         return $stmt->execute();
     }
-    public function deleteEstudiante($id)
+    public function deleteEstudiante($id,$usuario_id)
     {
+        //Eliminar estudiante
         $stmt = $this->db->prepare("DELETE FROM estudiante WHERE id = :id");
         $stmt->bindParam(':id', $id);
-        return $stmt->execute();
+        $stmt->execute();
+
+        // Eliminar usuario
+        $stmt = $this->db->prepare("DELETE FROM usuarios WHERE id = :usuario_id");
+        $stmt->bindParam(':usuario_id', $usuario_id);
+        $stmt->execute();
+
+        return true;
     }
 }

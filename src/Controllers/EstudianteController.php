@@ -79,9 +79,10 @@ class EstudianteController
     public function deleteEstudiante(Request $request, Response $response, array $args)
     {
         $id = $args['id'];
+        $usuario_id = $args['usuario_id'];
 
         // Eliminar alumno en la base de datos
-        $resultado = $this->estudianteModel->deleteEstudiante($id);
+        $resultado = $this->estudianteModel->deleteEstudiante($id,$usuario_id);
 
         if ($resultado) {
             $response->getBody()->write(json_encode(["message"=>"Estudiante eliminado"]));
