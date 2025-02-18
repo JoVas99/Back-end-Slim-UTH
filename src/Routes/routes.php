@@ -18,6 +18,7 @@ return function (App $app) {
     $app->get('/estudiante', [EstudianteController::class, 'getAllEstudiante']);
     $app->get('/estudiante/{id}', [EstudianteController::class, 'getEstudianteById']);
     $app->post('/estudiante', [EstudianteController::class, 'createEstudiante']);
+    $app->put('/estudiante/{id}', [EstudianteController::class, 'updateEstudiante']);
     $app->delete('/estudiante/{id}', [EstudianteController::class, 'deleteEstudiante']);
     
     //$app->get('/citas', [CitaController::class, 'getAllCitas'])->add(new AuthMiddleware($app->getContainer()->get(PDO::class), $app->getContainer()->get('secretKey')),['paciente']);
