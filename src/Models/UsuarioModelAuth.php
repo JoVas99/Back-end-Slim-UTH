@@ -13,7 +13,7 @@ class UsuarioModelAuth
     // Método para obtener el usuario de la base de datos
     public function getUserById($userId)
     {
-        $query = "SELECT fObtenerUsuariosPorID(:id) AS usuarios";
+        $query = "CALL spUsuariosSelectId(:id)";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':id', $userId);
         $stmt->execute();
@@ -21,7 +21,7 @@ class UsuarioModelAuth
     }
     public function getUserByEmail($correo)
     {
-        $query = "SELECT fObtenerUsuariosPorCorreo(:correo) AS usuarios";
+        $query = "CALL spUsuariosSelectCorreo(:correo)";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':correo', $correo);
         $stmt->execute();

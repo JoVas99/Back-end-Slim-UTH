@@ -18,7 +18,7 @@ class EstudianteModel
     }
     public function getEstudianteById($id)
     {
-        $sql = "SELECT fObtenerEstudiantePorID(:id) AS estudiante";
+        $sql = "CALL spEstudianteSelectId(:id)";
         $stmt = $this->db->prepare($sql);
         $stmt->bindParam(':id',$id);
         $stmt->execute();
