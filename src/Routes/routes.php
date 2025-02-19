@@ -22,9 +22,6 @@ return function (App $app) {
     $app->delete('/estudiante/{id}/{usuario_id}', [EstudianteController::class, 'deleteEstudiante']);
     
     //$app->get('/citas', [CitaController::class, 'getAllCitas'])->add(new AuthMiddleware($app->getContainer()->get(PDO::class), $app->getContainer()->get('secretKey')),['paciente']);
-    //$app->post('/citas', [CitaController::class, 'createCita']);
-
-    //$app->get('/medicos', [MedicoController::class, 'getAllMedicos']);
 
     $app->post('/register', [UsuarioControllerAuth::class, 'register']);
     $app->post('/login', [UsuarioControllerAuth::class, 'login']);

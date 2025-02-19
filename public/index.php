@@ -1,5 +1,15 @@
 <?php
-// public/index.php
+//Parte del codigo esta comentado es por que funcionaria si se usara un servidor
+//Ya que yo tenia otro codigo en un cpu viejo con ubuntu server.
+
+//IMPORTANTE: tengo creado un archivo AuthMiddleware.php esto lo que hace
+//es que a cada ruta que se le agrega se le ponen los roles que tiene permitido
+//entrar a esa ruta aqui en el API REST, les dejo un ejemplo en routes.php
+//y lo dejo sin usar por que les pediria un token valido si quieren hacer las pruebas
+//en programas como Postman o thunderclient en visualcode
+
+//Variables de entorno como la configuracion de la base de datos y la secretkey para
+//crear los tokens estan en el sitio donde se desplego el back end
 
 use Slim\Factory\AppFactory;
 use DI\Container;
