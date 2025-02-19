@@ -31,13 +31,22 @@ class UsuarioModelAuth
     {
         $hashedContraseña = password_hash($data['password'],PASSWORD_DEFAULT);
 
-        $query = "CALL spUsuariosInsert(:correo, :password, :rol)";
+        $query = "CALL spUsuariosInsert(:correo, :password, :rol, @idUsuario)";
         $stmt = $this->db->prepare($query);
+
         $stmt->bindParam(':correo',$data['correo']);
         $stmt->bindParam(':password',$hashedContraseña);
         $stmt->bindParam(':rol',$data['rol']);
+        
         $stmt->execute();
-        return $this->db->lastInsertId();
+        $stmt->closeCursor(); // IMPORTANTE: liberar la conexión antes de la siguiente consulta
+
+        // Recuperar el ID generado
+        $query = "SELECT @idUsuario AS id";
+        $stmt = $this->db->query($query);
+        $result = $stmt->fetch();
+
+        return $result['id'] ?? null; // Devolver el ID o null si hubo un error
     }
 }
 

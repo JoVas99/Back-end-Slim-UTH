@@ -26,15 +26,24 @@ class EstudianteModel
     }
     public function createEstudiante($data)
     {
-        $sql = "CALL spEstudianteInsert(:nombre, :apellido, :edad, :genero, :usuario_id)";
+        $sql = "CALL spEstudianteInsert(:nombre, :apellido, :edad, :genero, :usuario_id, @idEstudiante)";
         $stmt = $this->db->prepare($sql);
+
         $stmt->bindParam(':nombre', $data['nombre']);
         $stmt->bindParam(':apellido', $data['apellido']);
         $stmt->bindParam(':edad', $data['edad']);
         $stmt->bindParam(':genero', $data['genero']);
         $stmt->bindParam(':usuario_id', $data['usuario_id']);
+        
         $stmt->execute();
-        return $this->db->lastInsertId(); 
+        $stmt->closeCursor();
+        
+        // Recuperar el ID generado
+        $query = "SELECT @idEstudiante AS id";
+        $stmt = $this->db->query($query);
+        $result = $stmt->fetch();
+        
+        return $result['id'] ?? null; // Devolver el ID o null si hubo un error
     }
     public function updateEstudiante($id, $data)
     {
