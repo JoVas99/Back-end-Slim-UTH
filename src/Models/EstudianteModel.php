@@ -38,7 +38,7 @@ class EstudianteModel
     }
     public function updateEstudiante($id, $data)
     {
-        $stmt = $this->db->prepare("CALL spEstudianteUpdate :id, :nombre, :apellido, :edad, :genero, :usuario_id");
+        $stmt = $this->db->prepare("CALL spEstudianteUpdate (:id, :nombre, :apellido, :edad, :genero, :usuario_id)");
         
         $stmt->bindParam(':nombre', $data['nombre']);
         $stmt->bindParam(':apellido', $data['apellido']);
