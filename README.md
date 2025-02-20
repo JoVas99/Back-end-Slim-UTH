@@ -9,7 +9,7 @@ Genera los endpoints de mi API REST para crear, actualizar, listar y eliminar es
 ## Instalación
 1. Clona el siguiente repositorio:
 ```sh
-git clone 
+git clone https://github.com/JoVas99/Back-end-Slim-UTH.git
 ```
 
 2. Instala las dependencias:
