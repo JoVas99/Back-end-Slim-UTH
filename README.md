@@ -26,11 +26,13 @@ composer install
 
 ## Tablas de la base de datos
 
-- Tabla estudiante
+Tabla estudiante: 
+
 | id | nombre | apellido | edad | genero | usuario_id |
 |----|--------|----------|------|--------|------------|
 
-- Tabla estudiante
+Tabla usuarios:
+
 | id | correo | password | rol |
 |----|--------|----------|-----|
 
